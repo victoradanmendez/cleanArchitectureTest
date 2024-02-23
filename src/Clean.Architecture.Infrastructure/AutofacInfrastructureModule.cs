@@ -3,9 +3,11 @@ using Ardalis.SharedKernel;
 using Autofac;
 using Clean.Architecture.Core.ContributorAggregate;
 using Clean.Architecture.Core.Interfaces;
+using Clean.Architecture.Core.Services;
 using Clean.Architecture.Infrastructure.Data;
 using Clean.Architecture.Infrastructure.Data.Queries;
 using Clean.Architecture.Infrastructure.Email;
+using Clean.Architecture.UseCases.Contributors;
 using Clean.Architecture.UseCases.Contributors.Create;
 using Clean.Architecture.UseCases.Contributors.List;
 using MediatR;
@@ -40,9 +42,9 @@ public class AutofacInfrastructureModule : Module
   private void LoadAssemblies()
   {
     // TODO: Replace these types with any type in the appropriate assembly/project
-    var coreAssembly = Assembly.GetAssembly(typeof(Contributor));
+    var coreAssembly = Assembly.GetAssembly(typeof(Person));
     var infrastructureAssembly = Assembly.GetAssembly(typeof(AutofacInfrastructureModule));
-    var useCasesAssembly = Assembly.GetAssembly(typeof(CreateContributorCommand));
+    var useCasesAssembly = Assembly.GetAssembly(typeof(CreatePersonCommand));
 
     AddToAssembliesIfNotNull(coreAssembly);
     AddToAssembliesIfNotNull(infrastructureAssembly);
@@ -70,7 +72,18 @@ public class AutofacInfrastructureModule : Module
     builder.RegisterGeneric(typeof(EfRepository<>))
       .As(typeof(IRepository<>))
       .As(typeof(IReadRepository<>))
+      .As(typeof(IReadRepository<>))
       .InstancePerLifetimeScope();
+
+
+
+
+
+    builder.RegisterType(typeof(Clean.Architecture.Infrastructure.Data.WriteService))
+     .As(typeof(Clean.Architecture.Core.Interfaces.IWriteService<Person>))
+     .InstancePerLifetimeScope();
+    
+
   }
 
   private void RegisterQueries(ContainerBuilder builder)
@@ -78,6 +91,8 @@ public class AutofacInfrastructureModule : Module
     builder.RegisterType<ListContributorsQueryService>()
       .As<IListContributorsQueryService>()
       .InstancePerLifetimeScope();
+
+
   }
 
   private void RegisterMediatR(ContainerBuilder builder)
@@ -86,12 +101,13 @@ public class AutofacInfrastructureModule : Module
       .RegisterType<Mediator>()
       .As<IMediator>()
       .InstancePerLifetimeScope();
-
+    
     builder
       .RegisterGeneric(typeof(LoggingBehavior<,>))
       .As(typeof(IPipelineBehavior<,>))
       .InstancePerLifetimeScope();
 
+   
     builder
       .RegisterType<MediatRDomainEventDispatcher>()
       .As<IDomainEventDispatcher>()
@@ -120,9 +136,11 @@ public class AutofacInfrastructureModule : Module
     builder.RegisterType<FakeEmailSender>().As<IEmailSender>()
       .InstancePerLifetimeScope();
 
-    //builder.RegisterType<FakeListContributorsQueryService>()
-    //  .As<IListContributorsQueryService>()
-    //  .InstancePerLifetimeScope();
+    builder.RegisterType<FakeListContributorsQueryService>()
+      .As<IListContributorsQueryService>()
+      .InstancePerLifetimeScope();
+
+
   }
 
   private void RegisterProductionOnlyDependencies(ContainerBuilder builder)

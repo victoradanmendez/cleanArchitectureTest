@@ -1,4 +1,6 @@
-﻿using Autofac;
+﻿using Ardalis.SharedKernel;
+using Autofac;
+using Clean.Architecture.Core.ContributorAggregate;
 using Clean.Architecture.Core.Interfaces;
 using Clean.Architecture.Core.Services;
 
@@ -13,5 +15,11 @@ public class DefaultCoreModule : Module
   {
     builder.RegisterType<DeleteContributorService>()
         .As<IDeleteContributorService>().InstancePerLifetimeScope();
+
+    builder.RegisterType<WriteService>()
+      .As<Clean.Architecture.Core.Interfaces.IWriteService<Person>>().InstancePerLifetimeScope();
+
+
+
   }
 }

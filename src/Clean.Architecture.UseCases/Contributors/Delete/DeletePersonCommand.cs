@@ -3,4 +3,4 @@ using Ardalis.SharedKernel;
 
 namespace Clean.Architecture.UseCases.Contributors.Delete;
 
-public record DeleteContributorCommand(int ContributorId) : ICommand<Result>;
+public record DeletePersonCommand(int ContributorId) : ICommand<Result>;

@@ -6,16 +6,16 @@ using Clean.Architecture.UseCases.Contributors.List;
 namespace Clean.Architecture.Web.ContributorEndpoints;
 
 /// <summary>
-/// List all Contributors
+/// List all Persons
 /// </summary>
 /// <remarks>
-/// List all contributors - returns a ContributorListResponse containing the Contributors.
+/// List all persons - returns a ContributorListResponse containing the Contributors.
 /// </remarks>
 public class List(IMediator _mediator) : EndpointWithoutRequest<ContributorListResponse>
 {
   public override void Configure()
   {
-    Get("/Contributors");
+    Get("/Persons");
     AllowAnonymous();
   }
 

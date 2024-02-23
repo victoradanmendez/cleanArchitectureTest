@@ -2,41 +2,41 @@
 using Clean.Architecture.Web.Endpoints.ContributorEndpoints;
 using Clean.Architecture.UseCases.Contributors.Create;
 using MediatR;
+using Clean.Architecture.Infrastructure.Data;
 
 namespace Clean.Architecture.Web.ContributorEndpoints;
 
 /// <summary>
-/// Create a new Contributor
+/// Create a new Person
 /// </summary>
 /// <remarks>
-/// Creates a new Contributor given a name.
+/// Creates a new Person given a name, age, gender, etc..
 /// </remarks>
 public class Create(IMediator _mediator)
-  : Endpoint<CreateContributorRequest, CreateContributorResponse>
+  : Endpoint<CreatePersonRequest, CreatePersonResponse>
 {
   public override void Configure()
   {
-    Post(CreateContributorRequest.Route);
+    Post(CreatePersonRequest.Route);
     AllowAnonymous();
     Summary(s =>
     {
       // XML Docs are used by default but are overridden by these properties:
-      //s.Summary = "Create a new Contributor.";
-      //s.Description = "Create a new Contributor. A valid name is required.";
-      s.ExampleRequest = new CreateContributorRequest { Name = "Contributor Name" };
+      //s.Summary = "Create a new Person.";
+      //s.Description = "Create a new persons. A valid name is required.";
+      s.ExampleRequest = new CreatePersonRequest { Name = "Víctor Adán Méndez Medrano", Gender ="Male", PhoneNumber= "4772365478", Age=33,Email="adanmendezeng@gmail.com", Nationality= "Mexican" };
     });
   }
 
   public override async Task HandleAsync(
-    CreateContributorRequest request,
+    CreatePersonRequest request,
     CancellationToken cancellationToken)
   {
-    var result = await _mediator.Send(new CreateContributorCommand(request.Name!, 
-      request.PhoneNumber));
+    var result = await _mediator.Send(new CreatePersonCommand(request.Name!, request.Gender!, request.PhoneNumber!, request.Age, request.Email!, request.Nationality!));
 
     if(result.IsSuccess)
     {
-      Response = new CreateContributorResponse(result.Value, request.Name!);
+      Response = new CreatePersonResponse(result.Value, request.Name!);
       return;
     }
     // TODO: Handle other cases as necessary

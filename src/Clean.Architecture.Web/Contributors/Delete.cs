@@ -7,10 +7,10 @@ using Clean.Architecture.UseCases.Contributors.Delete;
 namespace Clean.Architecture.Web.ContributorEndpoints;
 
 /// <summary>
-/// Delete a Contributor.
+/// Delete a Person.
 /// </summary>
 /// <remarks>
-/// Delete a Contributor by providing a valid integer id.
+/// Delete a Person by providing a valid integer id.
 /// </remarks>
 public class Delete(IMediator _mediator)
   : Endpoint<DeleteContributorRequest>
@@ -25,20 +25,20 @@ public class Delete(IMediator _mediator)
     DeleteContributorRequest request,
     CancellationToken cancellationToken)
   {
-    var command = new DeleteContributorCommand(request.ContributorId);
+    var command = new DeletePersonCommand(request.PersonId);
 
     var result = await _mediator.Send(command);
-
     if (result.Status == ResultStatus.NotFound)
     {
+
       await SendNotFoundAsync(cancellationToken);
       return;
     }
 
-    if (result.IsSuccess)
+    if (result.Status == ResultStatus.Ok)
     {
-      await SendNoContentAsync(cancellationToken);
-    };
-    // TODO: Handle other issues as needed
+      // Se puede manejar una acción, como publicar en un esquema "Publisher-Suscriber"
+      return;
+    }
   }
 }

@@ -7,10 +7,10 @@ using Clean.Architecture.UseCases.Contributors.Get;
 namespace Clean.Architecture.Web.ContributorEndpoints;
 
 /// <summary>
-/// Get a Contributor by integer ID.
+/// Get a Person by integer ID.
 /// </summary>
 /// <remarks>
-/// Takes a positive integer ID and returns a matching Contributor record.
+/// Takes a positive integer ID and returns a matching Person record.
 /// </remarks>
 public class GetById(IMediator _mediator)
   : Endpoint<GetContributorByIdRequest, ContributorRecord>

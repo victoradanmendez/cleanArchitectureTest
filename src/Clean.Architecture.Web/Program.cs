@@ -38,7 +38,7 @@ builder.Services.SwaggerDocument(o =>
   o.ShortSchemaNames = true;
 });
 
-// add list services for diagnostic purposes - see https://github.com/ardalis/AspNetCoreStartupServices
+// addPerson list services for diagnostic purposes - see https://github.com/ardalis/AspNetCoreStartupServices
 builder.Services.Configure<ServiceConfig>(config =>
 {
   config.Services = new List<ServiceDescriptor>(builder.Services);
@@ -53,6 +53,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
   containerBuilder.RegisterModule(new DefaultCoreModule());
   containerBuilder.RegisterModule(new AutofacInfrastructureModule(builder.Environment.IsDevelopment()));
 });
+
+
 
 var app = builder.Build();
 

@@ -6,11 +6,11 @@ namespace Clean.Architecture.UnitTests.Core.ContributorAggregate;
 public class ContributorConstructor
 {
   private readonly string _testName = "test name";
-  private Contributor? _testContributor;
+  private Person? _testContributor;
 
-  private Contributor CreateContributor()
+  private Person CreateContributor()
   {
-    return new Contributor(_testName);
+    return new Person("","",_testName, "", "",0);
   }
 
   [Fact]

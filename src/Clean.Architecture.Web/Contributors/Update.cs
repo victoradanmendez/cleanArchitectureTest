@@ -8,10 +8,10 @@ using Clean.Architecture.UseCases.Contributors.Get;
 namespace Clean.Architecture.Web.ContributorEndpoints;
 
 /// <summary>
-/// Update an existing Contributor.
+/// Update an existing Person.
 /// </summary>
 /// <remarks>
-/// Update an existing Contributor by providing a fully defined replacement set of values.
+/// Update an existing Person.by providing a fully defined replacement set of values.
 /// See: https://stackoverflow.com/questions/60761955/rest-update-best-practice-put-collection-id-without-id-in-body-vs-put-collecti
 /// </remarks>
 public class Update(IMediator _mediator)
@@ -21,35 +21,42 @@ public class Update(IMediator _mediator)
   {
     Put(UpdateContributorRequest.Route);
     AllowAnonymous();
+
+    Summary(s =>
+    {
+      // XML Docs are used by default but are overridden by these properties:
+      //s.Summary = "Create a new Person.";
+      //s.Description = "Update a person."
+     // s.ExampleRequest = new CreatePersonRequest { Name = "Mi nuevo nombre", Gender = "Male", PhoneNumber = "1234567890", Age = 85, Email = "adanmendez@gmail.com", Nationality = "German" };
+
+    });
   }
+
+
+
+
+
 
   public override async Task HandleAsync(
     UpdateContributorRequest request,
     CancellationToken cancellationToken)
+
   {
-    var result = await _mediator.Send(new UpdateContributorCommand(request.Id, request.Name!));
+    var result = await _mediator.Send(new UpdatePersonCommand(request.PersonId, request.Name!, request.Gender!, request.PhoneNumber!, request.Age, request.Email!, request.Nationality!));
 
     if (result.Status == ResultStatus.NotFound)
     {
+
       await SendNotFoundAsync(cancellationToken);
       return;
     }
 
-    var query = new GetContributorQuery(request.ContributorId);
-
-    var queryResult = await _mediator.Send(query);
-
-    if (queryResult.Status == ResultStatus.NotFound)
+    if (result.Status == ResultStatus.Ok)
     {
-      await SendNotFoundAsync(cancellationToken);
+     // Se puede manejar una acción, como publicar en un esquema "Publisher-Suscriber"
       return;
     }
 
-    if (queryResult.IsSuccess)
-    {
-      var dto = queryResult.Value;
-      Response = new UpdateContributorResponse(new ContributorRecord(dto.Id, dto.Name, dto.PhoneNumber));
-      return;
-    }
+
   }
 }

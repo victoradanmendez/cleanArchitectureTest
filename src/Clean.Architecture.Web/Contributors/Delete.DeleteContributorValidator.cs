@@ -10,7 +10,7 @@ public class DeleteContributorValidator : Validator<DeleteContributorRequest>
 {
   public DeleteContributorValidator()
   {
-    RuleFor(x => x.ContributorId)
+    RuleFor(x => x.PersonId)
       .GreaterThan(0);
   }
 }

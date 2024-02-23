@@ -6,18 +6,20 @@ using Ardalis.SharedKernel;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
+
 namespace Clean.Architecture.Core.Services;
 
-public class DeleteContributorService(IRepository<Contributor> _repository,
+public class DeleteContributorService(IRepository<Person> _repository,
   IMediator _mediator,
   ILogger<DeleteContributorService> _logger) : IDeleteContributorService
 {
   public async Task<Result> DeleteContributor(int contributorId)
   {
-    _logger.LogInformation("Deleting Contributor {contributorId}", contributorId);
+    
+    _logger.LogInformation("Deleting Person {contributorId}", contributorId);
     var aggregateToDelete = await _repository.GetByIdAsync(contributorId);
     if (aggregateToDelete == null) return Result.NotFound();
-
+    
     await _repository.DeleteAsync(aggregateToDelete);
     var domainEvent = new ContributorDeletedEvent(contributorId);
     await _mediator.Publish(domainEvent);

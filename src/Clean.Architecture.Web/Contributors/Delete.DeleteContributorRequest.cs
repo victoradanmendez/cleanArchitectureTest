@@ -2,8 +2,10 @@
 
 public record DeleteContributorRequest
 {
-  public const string Route = "/Contributors/{ContributorId:int}";
-  public static string BuildRoute(int contributorId) => Route.Replace("{ContributorId:int}", contributorId.ToString());
+  public const string Route = "/Persons/{PersonId:int}";
+  public static string BuildRoute(int contributorId) => Route.Replace("{PersonId:int}", contributorId.ToString());
 
-  public int ContributorId { get; set; }
+
+
+  public int PersonId { get; set; }
 }

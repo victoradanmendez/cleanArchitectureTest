@@ -2,19 +2,19 @@
 @hostname=localhost
 @port=57679
 
-// List all contributors
-GET http://{{hostname}}:{{port}}/Contributors
+// List all persons
+GET http://{{hostname}}:{{port}}/Persons
 
 ###
 
 // Get a specific contributor
 @id_to_get=8
-GET http://{{hostname}}:{{port}}/Contributors/{{id_to_get}}
+GET http://{{hostname}}:{{port}}/Persons/{{id_to_get}}
 
 ###
 
 // Add a new contributor
-POST http://{{hostname}}:{{port}}/Contributors
+POST http://{{hostname}}:{{port}}/Persons
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 // Update a contributor
 @id_to_update=1
-PUT http://{{hostname}}:{{port}}/Contributors/{{id_to_update}}
+PUT http://{{hostname}}:{{port}}/Persons/{{id_to_update}}
 Content-Type: application/json
 
 {
@@ -37,7 +37,7 @@ Content-Type: application/json
 
 ###
 
-// Delete a contributor
+// Delete a person
 @id_to_delete=1
-DELETE http://{{hostname}}:{{port}}/Contributors/{{id_to_delete}}
+DELETE http://{{hostname}}:{{port}}/Persons/{{id_to_delete}}
 

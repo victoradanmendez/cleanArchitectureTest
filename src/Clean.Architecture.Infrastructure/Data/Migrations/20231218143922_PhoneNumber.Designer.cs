@@ -19,7 +19,7 @@ namespace Clean.Architecture.Infrastructure.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
-            modelBuilder.Entity("Clean.Architecture.Core.ContributorAggregate.Contributor", b =>
+            modelBuilder.Entity("Clean.Architecture.Core.ContributorAggregate.Person", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace Clean.Architecture.Infrastructure.Data.Migrations
                     b.ToTable("Contributors");
                 });
 
-            modelBuilder.Entity("Clean.Architecture.Core.ContributorAggregate.Contributor", b =>
+            modelBuilder.Entity("Clean.Architecture.Core.ContributorAggregate.Person", b =>
                 {
                     b.OwnsOne("Clean.Architecture.Core.ContributorAggregate.PhoneNumber", "PhoneNumber", b1 =>
                         {

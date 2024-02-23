@@ -13,7 +13,7 @@ public class ContributorList(CustomWebApplicationFactory<Program> factory) : ICl
   [Fact]
   public async Task ReturnsTwoContributors()
   {
-    var result = await _client.GetAndDeserializeAsync<ContributorListResponse>("/Contributors");
+    var result = await _client.GetAndDeserializeAsync<ContributorListResponse>("/Persons");
 
     Assert.Equal(2, result.Contributors.Count);
     Assert.Contains(result.Contributors, i => i.Name == SeedData.Contributor1.Name);
