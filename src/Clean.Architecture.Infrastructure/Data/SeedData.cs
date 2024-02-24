@@ -6,8 +6,8 @@ namespace Clean.Architecture.Infrastructure.Data;
 
 public static class SeedData
 {
-  public static readonly Person Contributor1 = new("","","","","",0);
-  public static readonly Person Contributor2 = new("", "", "", "", "", 1);
+  public static readonly PersonWriteDAO Contributor1 = new("","","","","",0);
+  public static readonly PersonWriteDAO Contributor2 = new("", "", "", "", "", 1);
 
   public static void Initialize(IServiceProvider serviceProvider)
   {

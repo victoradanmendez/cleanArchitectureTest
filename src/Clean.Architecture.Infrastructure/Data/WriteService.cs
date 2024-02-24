@@ -13,7 +13,7 @@ using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
 
 namespace Clean.Architecture.Infrastructure.Data;
-public class WriteService : Clean.Architecture.Core.Interfaces.IWriteService<Person>
+public class WriteService : Clean.Architecture.Core.Interfaces.IWriteService<PersonWriteDAO>
 {
   private ConexionMySQL _conexionMySql;
 
@@ -22,7 +22,7 @@ public class WriteService : Clean.Architecture.Core.Interfaces.IWriteService<Per
   }
 
 
-  public async Task<int> addPerson(Person person, CancellationToken cancellationToken)
+  public async Task<int> addPerson(PersonWriteDAO person, CancellationToken cancellationToken)
   {
     //Query string
     string insert = "INSERT INTO person(fullname, phone_number, gender, age, email, nationality) " +
@@ -54,7 +54,7 @@ public class WriteService : Clean.Architecture.Core.Interfaces.IWriteService<Per
     return await Task.Run(() => mySqlCommand.ExecuteNonQuery());
   }
 
-  public async Task<int> updatePerson(int personId, Person person, CancellationToken cancellationToken)
+  public async Task<int> updatePerson(int personId, PersonWriteDAO person, CancellationToken cancellationToken)
   {
     string update = "UPDATE person SET " +
                       "fullname=@nombre, " +

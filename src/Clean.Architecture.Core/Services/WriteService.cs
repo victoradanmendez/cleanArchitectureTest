@@ -8,9 +8,9 @@ using Clean.Architecture.Core.ContributorAggregate;
 using Clean.Architecture.Core.Interfaces;
 
 namespace Clean.Architecture.Core.Services;
-public class WriteService : IWriteService<Person>
+public class WriteService : IWriteService<PersonWriteDAO>
 {
-  public Task<Result> addPerson(Person person, CancellationToken cancellationToken)
+  public Task<Result> addPerson(PersonWriteDAO person, CancellationToken cancellationToken)
   {
 
 
@@ -23,17 +23,17 @@ public class WriteService : IWriteService<Person>
     throw new NotImplementedException();
   }
 
-  public Task<int> updatePerson(Person person, CancellationToken cancellationToken)
+  public Task<int> updatePerson(PersonWriteDAO person, CancellationToken cancellationToken)
   {
     throw new NotImplementedException();
   }
 
-  public Task<int> updatePerson(int personId, Person person, CancellationToken cancellationToken)
+  public Task<int> updatePerson(int personId, PersonWriteDAO person, CancellationToken cancellationToken)
   {
     throw new NotImplementedException();
   }
 
-  Task<int> IWriteService<Person>.addPerson(Person person, CancellationToken cancellationToken)
+  Task<int> IWriteService<PersonWriteDAO>.addPerson(PersonWriteDAO person, CancellationToken cancellationToken)
   {
     throw new NotImplementedException();
   }

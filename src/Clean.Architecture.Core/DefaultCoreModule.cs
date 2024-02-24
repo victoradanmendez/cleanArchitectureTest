@@ -17,7 +17,7 @@ public class DefaultCoreModule : Module
         .As<IDeleteContributorService>().InstancePerLifetimeScope();
 
     builder.RegisterType<WriteService>()
-      .As<Clean.Architecture.Core.Interfaces.IWriteService<Person>>().InstancePerLifetimeScope();
+      .As<Clean.Architecture.Core.Interfaces.IWriteService<PersonWriteDAO>>().InstancePerLifetimeScope();
 
 
 

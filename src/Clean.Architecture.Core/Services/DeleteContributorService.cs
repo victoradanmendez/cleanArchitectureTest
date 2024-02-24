@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Clean.Architecture.Core.Services;
 
-public class DeleteContributorService(IRepository<Person> _repository,
+public class DeleteContributorService(IRepository<PersonWriteDAO> _repository,
   IMediator _mediator,
   ILogger<DeleteContributorService> _logger) : IDeleteContributorService
 {
@@ -21,7 +21,7 @@ public class DeleteContributorService(IRepository<Person> _repository,
     if (aggregateToDelete == null) return Result.NotFound();
     
     await _repository.DeleteAsync(aggregateToDelete);
-    var domainEvent = new ContributorDeletedEvent(contributorId);
+    var domainEvent = new PersonEvent(contributorId);
     await _mediator.Publish(domainEvent);
     return Result.Success();
   }

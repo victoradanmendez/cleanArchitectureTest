@@ -42,7 +42,7 @@ public class AutofacInfrastructureModule : Module
   private void LoadAssemblies()
   {
     // TODO: Replace these types with any type in the appropriate assembly/project
-    var coreAssembly = Assembly.GetAssembly(typeof(Person));
+    var coreAssembly = Assembly.GetAssembly(typeof(PersonWriteDAO));
     var infrastructureAssembly = Assembly.GetAssembly(typeof(AutofacInfrastructureModule));
     var useCasesAssembly = Assembly.GetAssembly(typeof(CreatePersonCommand));
 
@@ -76,7 +76,7 @@ public class AutofacInfrastructureModule : Module
       .InstancePerLifetimeScope();
 
     builder.RegisterType(typeof(Clean.Architecture.Infrastructure.Data.WriteService))
-     .As(typeof(Clean.Architecture.Core.Interfaces.IWriteService<Person>))
+     .As(typeof(Clean.Architecture.Core.Interfaces.IWriteService<PersonWriteDAO>))
      .InstancePerLifetimeScope();
 
     builder.RegisterType(typeof(Clean.Architecture.Infrastructure.Data.ReadService))
@@ -88,7 +88,7 @@ public class AutofacInfrastructureModule : Module
   private void RegisterQueries(ContainerBuilder builder)
   {
     builder.RegisterType<ListContributorsQueryService>()
-      .As<IListContributorsQueryService>()
+      .As<IListPersonQueryService>()
       .InstancePerLifetimeScope();
 
 
@@ -136,7 +136,7 @@ public class AutofacInfrastructureModule : Module
       .InstancePerLifetimeScope();
 
     builder.RegisterType<FakeListContributorsQueryService>()
-      .As<IListContributorsQueryService>()
+      .As<IListPersonQueryService>()
       .InstancePerLifetimeScope();
 
 

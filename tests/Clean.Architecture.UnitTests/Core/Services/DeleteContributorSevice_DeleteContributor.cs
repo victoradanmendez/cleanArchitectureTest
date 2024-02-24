@@ -10,7 +10,7 @@ namespace Clean.Architecture.UnitTests.Core.Services;
 
 public class DeleteContributorService_DeleteContributor
 {
-  private readonly IRepository<Person> _repository = Substitute.For<IRepository<Person>>();
+  private readonly IRepository<PersonWriteDAO> _repository = Substitute.For<IRepository<PersonWriteDAO>>();
   private readonly IMediator _mediator = Substitute.For<IMediator>();
   private readonly ILogger<DeleteContributorService> _logger = Substitute.For<ILogger<DeleteContributorService>>();
 

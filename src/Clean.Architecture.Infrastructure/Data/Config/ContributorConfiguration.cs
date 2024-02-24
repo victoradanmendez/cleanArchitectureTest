@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Clean.Architecture.Infrastructure.Data.Config;
 
-public class ContributorConfiguration : IEntityTypeConfiguration<Person>
+public class ContributorConfiguration : IEntityTypeConfiguration<PersonWriteDAO>
 {
-  public void Configure(EntityTypeBuilder<Person> builder)
+  public void Configure(EntityTypeBuilder<PersonWriteDAO> builder)
   {
     builder.Property(p => p.Name)
         .HasMaxLength(DataSchemaConstants.DEFAULT_NAME_LENGTH)

@@ -3,7 +3,7 @@ using Clean.Architecture.UseCases.Contributors.List;
 
 namespace Clean.Architecture.Infrastructure.Data.Queries;
 
-public class FakeListContributorsQueryService : IListContributorsQueryService
+public class FakeListContributorsQueryService : IListPersonQueryService
 {
   public Task<IEnumerable<PersonDTO>> ListAsync()
   {
