@@ -42,7 +42,7 @@ namespace Clean.Architecture.Infrastructure.Data.Migrations
                 {
                     b.OwnsOne("Clean.Architecture.Core.ContributorAggregate.PhoneNumber", "PhoneNumber", b1 =>
                         {
-                            b1.Property<int>("ContributorId")
+                            b1.Property<int>("PersonId")
                                 .HasColumnType("INTEGER");
 
                             b1.Property<string>("CountryCode")
@@ -56,12 +56,12 @@ namespace Clean.Architecture.Infrastructure.Data.Migrations
                                 .IsRequired()
                                 .HasColumnType("TEXT");
 
-                            b1.HasKey("ContributorId");
+                            b1.HasKey("PersonId");
 
                             b1.ToTable("Contributors");
 
                             b1.WithOwner()
-                                .HasForeignKey("ContributorId");
+                                .HasForeignKey("PersonId");
                         });
 
                     b.Navigation("PhoneNumber");

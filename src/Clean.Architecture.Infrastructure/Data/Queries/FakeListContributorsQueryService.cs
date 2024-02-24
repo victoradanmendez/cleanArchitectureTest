@@ -5,11 +5,11 @@ namespace Clean.Architecture.Infrastructure.Data.Queries;
 
 public class FakeListContributorsQueryService : IListContributorsQueryService
 {
-  public Task<IEnumerable<ContributorDTO>> ListAsync()
+  public Task<IEnumerable<PersonDTO>> ListAsync()
   {
-    List<ContributorDTO> result =
-        [new ContributorDTO(1, "Fake Person 1", "", "", 0, "", ""),
-        new ContributorDTO(2, "Fake Person 1", "", "",0,"","")];
+    List<PersonDTO> result =
+        [new PersonDTO(1, "Fake Person 1", "", "", 0, "", ""),
+        new PersonDTO(2, "Fake Person 1", "", "",0,"","")];
 
     return Task.FromResult(result.AsEnumerable());
   }

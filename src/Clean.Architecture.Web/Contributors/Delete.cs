@@ -1,4 +1,6 @@
-﻿using FastEndpoints;
+﻿
+
+using FastEndpoints;
 using Ardalis.Result;
 using MediatR;
 using Clean.Architecture.Web.Endpoints.ContributorEndpoints;

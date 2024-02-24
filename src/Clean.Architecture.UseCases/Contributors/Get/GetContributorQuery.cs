@@ -3,4 +3,4 @@ using Ardalis.SharedKernel;
 
 namespace Clean.Architecture.UseCases.Contributors.Get;
 
-public record GetContributorQuery(int ContributorId) : IQuery<Result<ContributorDTO>>;
+public record GetContributorQuery(int PersonId) : IQuery<Result<PersonDTO>>;

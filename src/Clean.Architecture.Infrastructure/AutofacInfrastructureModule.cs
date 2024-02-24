@@ -75,14 +75,13 @@ public class AutofacInfrastructureModule : Module
       .As(typeof(IReadRepository<>))
       .InstancePerLifetimeScope();
 
-
-
-
-
     builder.RegisterType(typeof(Clean.Architecture.Infrastructure.Data.WriteService))
      .As(typeof(Clean.Architecture.Core.Interfaces.IWriteService<Person>))
      .InstancePerLifetimeScope();
-    
+
+    builder.RegisterType(typeof(Clean.Architecture.Infrastructure.Data.ReadService))
+     .As(typeof(Clean.Architecture.Core.Interfaces.IReadService))
+     .InstancePerLifetimeScope();
 
   }
 

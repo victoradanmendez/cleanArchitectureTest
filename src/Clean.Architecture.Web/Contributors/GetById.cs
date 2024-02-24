@@ -24,7 +24,7 @@ public class GetById(IMediator _mediator)
   public override async Task HandleAsync(GetContributorByIdRequest request,
     CancellationToken cancellationToken)
   {
-    var command = new GetContributorQuery(request.ContributorId);
+    var command = new GetContributorQuery(request.PersonId);
 
     var result = await _mediator.Send(command);
 
@@ -36,7 +36,7 @@ public class GetById(IMediator _mediator)
 
     if (result.IsSuccess)
     {
-      Response = new ContributorRecord(result.Value.Id, result.Value.Name, result.Value.PhoneNumber);
+      Response = new ContributorRecord(request.PersonId, result.Value.Name, result.Value.PhoneNumber, result.Value.Gender, result.Value.Age, result.Value.Email, result.Value.Nationality);
     }
   }
 }

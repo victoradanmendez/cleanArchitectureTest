@@ -13,6 +13,9 @@ public class Person(string name, string gender, string eMail, string nationality
   public int Age { get; private set; } = Guard.Against.Null(age, nameof(age)); 
   public string Email { get; private set; } = Guard.Against.NullOrEmpty(eMail, nameof(eMail));
   public string Nationality { get; private set; } = Guard.Against.NullOrEmpty(nationality, nameof(nationality));
+
+
+
 }
 
 

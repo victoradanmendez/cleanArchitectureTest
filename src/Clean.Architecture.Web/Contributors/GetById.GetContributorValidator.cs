@@ -10,7 +10,7 @@ public class GetContributorValidator : Validator<GetContributorByIdRequest>
 {
   public GetContributorValidator()
   {
-    RuleFor(x => x.ContributorId)
+    RuleFor(x => x.PersonId)
       .GreaterThan(0);
   }
 }
