@@ -6,7 +6,6 @@ using Clean.Architecture.Core.Interfaces;
 using Clean.Architecture.Core.Services;
 using Clean.Architecture.Infrastructure.Data;
 using Clean.Architecture.Infrastructure.Data.Queries;
-using Clean.Architecture.Infrastructure.Email;
 using Clean.Architecture.UseCases.Contributors;
 using Clean.Architecture.UseCases.Contributors.Create;
 using Clean.Architecture.UseCases.Contributors.List;
@@ -131,13 +130,7 @@ public class AutofacInfrastructureModule : Module
 
   private void RegisterDevelopmentOnlyDependencies(ContainerBuilder builder)
   {
-    // NOTE: Add any development only services here
-    builder.RegisterType<FakeEmailSender>().As<IEmailSender>()
-      .InstancePerLifetimeScope();
 
-    builder.RegisterType<FakeListContributorsQueryService>()
-      .As<IListPersonQueryService>()
-      .InstancePerLifetimeScope();
 
 
   }
@@ -145,7 +138,5 @@ public class AutofacInfrastructureModule : Module
   private void RegisterProductionOnlyDependencies(ContainerBuilder builder)
   {
     // NOTE: Add any production only (real) services here
-    builder.RegisterType<SmtpEmailSender>().As<IEmailSender>()
-      .InstancePerLifetimeScope();
   }
 }

@@ -23,13 +23,15 @@ public class CreateContributorValidator : Validator<CreatePersonRequest>
       .MinimumLength(2)
       .MaximumLength(DataSchemaConstants.DEFAULT_PHONE_LENGTH);
 
-    RuleFor(x => x.Email).NotEmpty().WithMessage("Email is required");
+
 
     RuleFor(x => x.Gender)
       .NotEmpty()
       .WithMessage("Gender is required.")
       .MinimumLength(4)
       .MaximumLength(6);
+
+    RuleFor(x => x.Email).NotEmpty().WithMessage("Email is requiered");
 
   }
 }

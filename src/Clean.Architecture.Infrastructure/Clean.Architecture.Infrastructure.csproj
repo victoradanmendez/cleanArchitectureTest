@@ -19,4 +19,8 @@
     <ProjectReference Include="..\Clean.Architecture.Core\Clean.Architecture.Core.csproj" />
     <ProjectReference Include="..\Clean.Architecture.UseCases\Clean.Architecture.UseCases.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Email\" />
+  </ItemGroup>
 </Project>

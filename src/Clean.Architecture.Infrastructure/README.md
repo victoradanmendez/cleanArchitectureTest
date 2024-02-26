@@ -1,17 +1,29 @@
 ﻿## Infrastructure Project
 
-In Clean Architecture, Infrastructure concerns are kept separate from the core business rules (or domain model in DDD).
 
-The only project that should have code concerned with EF, Files, Email, Web Services, Azure/AWS/GCP, etc is Infrastructure.
+1.- Run the script that are at the end of this file on MySQL workspace like MySQLWorkBranch.
+2.- Configure Clean.Architecture.Web project as startup Program.
+3.- Run the API and start to use CRUD operations.
 
-Infrastructure should depend on Core (and, optionally, Use Cases) where abstractions (interfaces) exist.
 
-Infrastructure classes implement interfaces found in the Core (Use Cases) project(s).
 
-These implementations are wired up at startup using DI. In this case using Autofac and the Module classes defined in each project.
 
-Need help? Check out the sample here:
-https://github.com/ardalis/CleanArchitecture/tree/main/sample
+## Script DataBase
+CREATE DATABASE organisms;
 
-Still need help?
-Contact us at https://nimblepros.com
+USE organisms;
+
+CREATE TABLE Person
+(
+	Pk_Person INT NOT NULL PRIMARY KEY auto_increment,    
+	FullName VARCHAR(50),
+	Phone_Number VARCHAR(50),
+	Gender VARCHAR(10),
+	Age TINYINT,      
+	Email VARCHAR(100),
+	Nationality VARCHAR(30),
+    Last_Updated_Date  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+SELECT * FROM Person LIMIT 10;
+
