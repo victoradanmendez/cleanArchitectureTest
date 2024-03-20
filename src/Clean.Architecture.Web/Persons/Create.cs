@@ -39,6 +39,6 @@ public class Create(IMediator _mediator)
       Response = new CreatePersonResponse(result.Value, request.Name!);
       return;
     }
-    // TODO: Handle other cases as necessary
+
   }
 }

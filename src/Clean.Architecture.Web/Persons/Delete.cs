@@ -38,6 +38,7 @@ public class Delete(IMediator _mediator)
 
     if (result.Status == ResultStatus.Ok)
     {
+      Response = new DeletePersonRequest { PersonId = request.PersonId };
       // Se puede manejar una acción, como publicar en un esquema "Publisher-Suscriber"
       return;
     }
